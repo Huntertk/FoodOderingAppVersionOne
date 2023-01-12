@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Imperial Spice -- Best Food Odering App</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <header>
+        <div class="heading">
+            <h1 class="title">The Imperial Spice</h1>
+            <p class="heading-para">The Real Taste Of North Indian Food</p>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="container-title"><span class="discount">30% Discount</span> on ₹500 or More Orders</h1>
+        <div id="container-render">
+            <!-- <div id="container">
+                <img class="food-img" src="./images/chicken.jpg" alt="">
+                <div class="food-container">
+                    <p class="dish-name">Chicken Tandoori</p>
+                    <p class="ingrediants">Smokey, Grilled, Roasted</p>
+                    <span class="discount price">₹800</span>
+                    <p class="Description">Smokey Grilled Chicken Tandoori With Indian Spices.</p>
+                </div>
+                <div class="buy">
+                    <button class="btnBuy">-</button>
+                    <button class="btnBuy">+</button>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="order" id="order">
+            <div class="order-quantity">
+                <h3 class="discount">Your Orders</h3>
+                <div id="order-item">
+                <h1 class="discount">You Have No Orders Please Add Order</h1>
+                    <!-- <p>Chicken Tandoori</p>
+                    <p id="quantity">x1</p>
+                    <button class="remove-btn" id="remove-btn">Remove</button>
+                    <p id="total">₹800</p> -->
+                </div>
+                <div class="Total">
+                   <h3>Total</h3>
+                    <p id="totalPriceOrder" class="discount price-total">₹1800</p>
+                </div>
+            </div>
+            <button class="complete-order" id="complete-order">Complete Order</button>
+        </div>
+
+        <div class="modal" id="modal">
+            <h3>Enter Your Details To Confirm Order</h3>
+            <form id="payment-form">
+                <input 
+                class="form"
+                type="text" 
+                placeholder="Enter Full Name" 
+                name="fullName" 
+                id="fullName"
+                required
+                />
+                <input 
+                class="form"
+                type="text"
+                name="cardNumber"
+                placeholder="Enter Your Card Details"
+                id="cardNumber"
+                required
+                />
+                <button class="complete-order" id="paymentButton">Pay Securly</button> 
+            </form>
+        </div>
+
+
+        <div id="final-message modal" class="final-message modal">
+            <h3>Thank You <span class="discount" id="customer-name">MD TAUFIK</span> For Booking Your Meal Your Food Is On the Way. 🥳</h3>
+            <h3>Enjoy Your Meal.</h3>
+        </div>
+    </main>
+
+
+
+    <script src="./index.js" type="module"></script>
+</body>
+</html>
