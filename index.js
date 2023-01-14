@@ -1,7 +1,7 @@
 const menuArray = [
     {
         id: 0,
-        quantity:1,
+        quantity:0,
         name: "Chicken Tandoori",
         ingredients: ["Smokey", "Grilled", "Tandoori"],
         price: 800,
@@ -11,7 +11,7 @@ const menuArray = [
     },
     {
         id: 1,
-        quantity:1,
+        quantity:0,
         name: "Chicken Biryani",
         ingredients: ["Dum Biryani", "Special Mint Raita", "Juicy Chicken"],
         price: 450,
@@ -21,7 +21,7 @@ const menuArray = [
     },
     {
         id: 2,
-        quantity:1,
+        quantity:0,
         name: "Masala Dosa",
         ingredients: ["Dosa", "Special Mint Raita", "Sambar"],
         price: 200,
@@ -32,7 +32,7 @@ const menuArray = [
 ]
 const formDetails = document.getElementById('payment-form')
 const orderSummaryArr = []
-let priceTotal
+let priceTotal = 
 
 
 formDetails.addEventListener('submit', function(e){
@@ -70,36 +70,38 @@ function handleRemovingOrders(orderRemoveId){
     const targetOrderObj = menuArray.filter(function(menus){
         return menus.id === Number(orderRemoveId)
     })[0]
-    console.log(orderSummaryArr)
-        orderSummaryArr.pop()
-        renderOrder() 
+    
+    const removeObj = orderSummaryArr.indexOf(targetOrderObj)
+    
+    delete orderSummaryArr[removeObj]
+    renderOrder() 
 }
 
 function handleAddingOrder(oderAddId){
     const targetOrderObj = menuArray.filter(function(menus){
         return menus.id === Number(oderAddId)
-    })[0]
-        
-    
-            orderSummaryArr.push({
-                name: targetOrderObj.name,
-                price: targetOrderObj.price,
-                quantity: targetOrderObj.quantity
-            })
+    })[0]   
+
+        if(targetOrderObj){
+            console.log(targetOrderObj)
+            orderSummaryArr.push(targetOrderObj)
+            targetOrderObj.quantity++
+        }
+     
             renderOrder()
         
-    console.log(orderSummaryArr)
+  
 }
 
 function renderOrder(){   
-    let order = ``
-
-    orderSummaryArr.forEach(function(orders){
-         order += `
-         <div class="order-item">
+        let order = ``
+        
+        orderSummaryArr.forEach(function(orders){
+            order += `
+            <div class="order-item">
             <p>${orders.name}</p>
             <p id="quantity">X${orders.quantity}</p>
-            <button class="remove-btn" id="remove-btn">Remove</button>
+            <button class="remove-btn" data-decrement=${orders.id}>Remove</button>
             <p id="total">₹${orders.price}</p>   
         </div>    
     `
@@ -112,7 +114,7 @@ function getMenu(){
 let menuHtml = ``
     menuArray.forEach(function(menu){
             ingred = menu.ingredients
-            console.log(ingred)
+            // console.log(ingred)
             menuHtml += `
             <div id="container">
             <img class="food-img" src="${menu.img}" alt="">
@@ -123,13 +125,14 @@ let menuHtml = ``
             <p class="Description">${menu.description}</p>
             </div>
             <div class="buy">
-            <button class="btnBuy" data-decrement=${menu.id}>-</button>
+
             <button class="btnBuy" data-increment=${menu.id}>+</button>
             </div>
             </div>
             `
+            // <button class="btnBuy" data-decrement=${menu.id}>-</button>
         })
-    document.getElementById('container-render').innerHTML = menuHtml
+        document.getElementById('container-render').innerHTML = menuHtml
 }
 
 getMenu()
