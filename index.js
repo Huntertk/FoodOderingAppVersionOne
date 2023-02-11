@@ -32,7 +32,6 @@ const menuArray = [
 ]
 const formDetails = document.getElementById('payment-form')
 const orderSummaryArr = []
-let priceTotal = 
 
 
 formDetails.addEventListener('submit', function(e){
@@ -77,23 +76,36 @@ function handleRemovingOrders(orderRemoveId){
     renderOrder() 
 }
 
+let totalPrice = []
+
 function handleAddingOrder(oderAddId){
     const targetOrderObj = menuArray.filter(function(menus){
         return menus.id === Number(oderAddId)
     })[0]   
-
         if(targetOrderObj){
             console.log(targetOrderObj)
             orderSummaryArr.push(targetOrderObj)
+            totalPrice.push(targetOrderObj.price)
             targetOrderObj.quantity++
         }
      
             renderOrder()
+            // console.log(totalPrice)
         
   
 }
 
+function totalAmt(){
+    let totalAmount = totalPrice.reduce((total, current)=>{
+        return total+current
+    }) 
+    console.log(totalAmount)
+    document.getElementById('totalPriceOrder').innerHTML = '₹'+totalAmount
+}
+
 function renderOrder(){   
+
+        totalAmt()
         let order = ``
         
         orderSummaryArr.forEach(function(orders){
